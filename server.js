@@ -3,29 +3,21 @@ import RouterProductos from './router/productos.js'
 import RouterClientes from './router/clientes.js'
 
 
-class Server {
-    #port = null
-    #routerProductos = null
-    #routerClientes = null
+const app = express();
 
-    constructor(port) {
-        this.#port = port
-        this.#routerProductos = new RouterProductos()
-        this.#routerClientes = new RouterClientes()
-    }
+app.use(express.static("public"));
+app.use(express.urlencoded({extended:true}))
+app.use(express.json());
+app.use(express.static('public'))
 
-    start() {
-        const app = express()
-        
-        app.use(express.json())
-        app.use(express.urlencoded({extended:true}))
-        app.use(express.static('public'))
-        app.use('/api/productos', this.#routerProductos.config())
-        app.use('/api/clientes', this.#routerClientes.config())
+const routerClientes = new RouterClientes();
+const routerProductos = new RouterProductos();
 
-        const server = app.listen(this.#port, () => console.log(`Servidor ApiRestful escuchando en http://localhost:${this.#port}`))
-        server.on('error', error => console.log(`Error en servidor: ${error.message}`))
-    }
-}
+app.use("/productos", routerProductos.start());
+app.use("/clientes", routerClientes.start());
 
-export default Server
+const PORT = 8080;
+const server = app.listen(PORT, () =>
+  console.log(`Servidor express escuchando en http://localhost:${PORT}`),
+);
+server.on("error", (error) => console.log("Servidor express en error:", error));

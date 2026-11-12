@@ -10,8 +10,7 @@ class Controlador {
 
     obtenerClientes = async (req,res) => {
         try {
-            const  id  = req.params.id
-            const clientes = await this.#servicio.obtenerClientes(id)
+            const clientes = await this.#servicio.obtenerClientes()
             res.json(clientes)
         }
         catch(error) {

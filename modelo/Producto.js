@@ -21,10 +21,10 @@ class Producto {
         if(this.nombre == '') throw new Error('El campo nombre es obligatorio')
 
         const schemaProducto = Joi.object({
-            nombre: Joi.string().alphanum().min(3).max(30).required(),
+            nombre:  Joi.string().min(3).max(30).required(),
             precio: Joi.number().min(0).max(1000000).required(),
             stock: Joi.number().integer().min(0).max(999).required(),
-            descripcion: Joi.string().alphanum().min(5).max(60).required(),
+            descripcion: Joi.string().min(5).max(60).required(),
         });
 
         const { error } = schemaProducto.validate({
