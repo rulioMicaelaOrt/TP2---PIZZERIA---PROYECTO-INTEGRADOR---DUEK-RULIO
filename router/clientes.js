@@ -9,7 +9,7 @@ class Router {
         this.#controlador = new Controlador()
     }
 
-    config() {
+    start() {
         const router = express.Router()
 
         router.get('/', this.#controlador.obtenerClientes)

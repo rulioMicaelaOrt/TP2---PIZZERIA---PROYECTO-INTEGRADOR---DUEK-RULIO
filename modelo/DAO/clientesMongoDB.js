@@ -10,11 +10,6 @@ class ClientesMongoDB {
         return await db.collection('clientes').find({}).toArray()
     }
 
-    obtenerCliente = async id => {
-        const db = await conectarMongoDB()
-        return await db.collection('clientes').findOne({ _id: new ObjectId(id) })
-    }
-
     guardarCliente = async cliente => {
         const db = await conectarMongoDB()
 

@@ -10,15 +10,9 @@ class Servicio {
         this.#modelo = new ClientesMongoDb()
     }
 
-    obtenerCliente = async id => {
-        if(id) {   
-            const cliente = await this.#modelo.obtenercliente(id)
-            return cliente
-        }
-        else {
+    obtenerClientes = async ()=> { 
             const clientes = await this.#modelo.obtenerClientes()
-            return clientes
-        }    
+            return clientes    
     }
 
     guardarCliente = async cliente => {
@@ -29,9 +23,11 @@ class Servicio {
     }
 
     actualizarCliente = async (id, cliente) => {
-        const clienteActualizado = await this.#modelo.actualizarCliente(id, cliente)
-        return clienteActualizado
-    }
+    const clienteModelo = new Cliente(cliente)
+    clienteModelo.validar()
+    const clienteActualizado = await this.#modelo.actualizarCliente(id, clienteModelo.get())
+    return clienteActualizado
+}
 
     borrarCliente = async id => {
         const clienteEliminado = await this.#modelo.borrarCliente(id)

@@ -10,11 +10,6 @@ class ProductosMongoDB {
         return await db.collection('productos').find({}).toArray()
     }
 
-    obtenerProducto = async id => {
-        const db = await conectarMongoDB()
-        return await db.collection('productos').findOne({ _id: new ObjectId(id) })
-    }
-
     guardarProducto = async producto => {
         const db = await conectarMongoDB()
 

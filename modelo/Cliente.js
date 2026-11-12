@@ -14,15 +14,13 @@ class Cliente {
     }
 
     validar() {
-        if(this.nombre == '') throw new Error('El campo nombre es obligatorio')
-
-        const schemaProducto = Joi.object({
-            nombre: Joi.string().alphanum().min(3).max(30).required(),
+        const schemaCliente = Joi.object({
+            nombre: Joi.string().min(3).max(30).required(),
             edad: Joi.number().min(18).max(100).required(),
             mail: Joi.string().email().required()
         });
 
-        const { error } = schemaProducto.validate({
+        const { error } = schemaCliente.validate({
             nombre: this.nombre,
             edad: this.edad,
             mail: this.mail

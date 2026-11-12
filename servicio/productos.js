@@ -10,15 +10,9 @@ class Servicio {
         this.#modelo = new ProductosMongoDb()
     }
 
-    obtenerProductos = async id => {
-        if(id) {   
-            const producto = await this.#modelo.obtenerProducto(id)
-            return producto
-        }
-        else {
-            const productos = await this.#modelo.obtenerProductos()
-            return productos
-        }    
+    obtenerProductos = async () => {
+        const productos = await this.#modelo.obtenerProductos()
+        return productos
     }
 
     guardarProducto = async producto => {
@@ -29,9 +23,11 @@ class Servicio {
     }
 
     actualizarProducto = async (id, producto) => {
-        const productoActualizado = await this.#modelo.actualizarProducto(id, producto)
-        return productoActualizado
-    }
+    const productoActualizado = new Producto(producto)
+    productoActualizado.validar()
+    const productoActualizadoActualizado = await this.#modelo.actualizarProducto(id, producto)
+    return productoActualizadoActualizado
+}
 
     borrarProducto = async id => {
         const productoEliminado = await this.#modelo.borrarProducto(id)
