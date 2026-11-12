@@ -18,8 +18,6 @@ class Producto {
     }
 
     validar() {
-        if(this.nombre == '') throw new Error('El campo nombre es obligatorio')
-
         const schemaProducto = Joi.object({
             nombre:  Joi.string().min(3).max(30).required(),
             precio: Joi.number().min(0).max(1000000).required(),
