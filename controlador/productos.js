@@ -56,6 +56,25 @@ class Controlador {
             res.status(500).json({ url: req.url, method: req.method, error: error.message })
         }
     }
+
+generarPDF = async (req, res) => {
+    try {
+        const doc = await this.#servicio.generarPDF()
+        res.setHeader('Content-Type', 'application/pdf')
+        res.setHeader(
+            'Content-Disposition',
+            'attachment; filename=reporte-inventario.pdf'
+        )
+        doc.pipe(res)
+        doc.end()
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        })
+    }
+}
+
+
 }
 
 export default Controlador

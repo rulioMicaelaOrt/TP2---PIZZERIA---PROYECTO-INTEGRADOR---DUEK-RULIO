@@ -14,11 +14,12 @@ class Router {
 
     start() {
         const router = express.Router()
-
+        router.get('/pdf', autenticacion, autorizacion('admin'),   this.#controlador.generarPDF)
         router.get('/', this.#controlador.obtenerProductos)
         router.post('/', autenticacion, autorizacion('admin'), this.#controlador.guardarProducto)
         router.put('/:id', autenticacion, autorizacion('admin'), this.#controlador.actualizarProducto)
         router.delete('/:id', autenticacion, autorizacion('admin'), this.#controlador.borrarProducto)
+        
 
 
         return router
