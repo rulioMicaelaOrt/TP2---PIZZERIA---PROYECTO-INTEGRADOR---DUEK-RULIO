@@ -1,6 +1,7 @@
 import express from 'express'
 import RouterProductos from './router/productos.js'
 import RouterClientes from './router/clientes.js'
+import RouterUsuarios from './router/usuarios.js'
 
 
 const app = express();
@@ -12,9 +13,11 @@ app.use(express.static('public'))
 
 const routerClientes = new RouterClientes();
 const routerProductos = new RouterProductos();
+const routerUsuarios = new RouterUsuarios()
 
 app.use("/productos", routerProductos.start());
 app.use("/clientes", routerClientes.start());
+app.use('/usuarios', routerUsuarios.start())
 
 const PORT = 8080;
 const server = app.listen(PORT, () =>
