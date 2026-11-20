@@ -36,6 +36,20 @@ class Producto {
             throw new Error(error)
         }
     }
+      validarParcial(producto) {
+        const schemaProducto = Joi.object({
+            nombre: Joi.string().min(3).max(30),
+            precio: Joi.number().min(0).max(1000000),
+            stock: Joi.number().integer().min(0).max(999),
+            descripcion: Joi.string().min(5).max(60),
+        }).min(1)
+
+        const { error } = schemaProducto.validate(producto)
+
+        if (error) {
+            throw new Error(error)
+        }
+    }
 
     get() {
         return {

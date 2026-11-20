@@ -1,7 +1,9 @@
 
 import jwt from 'jsonwebtoken'
 
-const SECRET = 'clave_secreta_pizzeria'
+import 'dotenv/config'
+
+const SECRET = process.env.JWT_SECRET
 
 const generarToken = (payload) => {
     return jwt.sign(payload, SECRET, { expiresIn: '1h' })

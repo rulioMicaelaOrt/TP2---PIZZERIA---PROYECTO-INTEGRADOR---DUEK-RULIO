@@ -1,8 +1,9 @@
 
 import { MongoClient } from 'mongodb'
+import 'dotenv/config'
 
-const URI = 'mongodb://127.0.0.1:27017'
-const BASE = 'pizzeria'
+const URI = process.env.MONGO_URI
+const BASE = process.env.MONGO_DB
 
 const client = new MongoClient(URI)
 
