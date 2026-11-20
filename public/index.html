@@ -5,657 +5,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Fornería - Pizzería</title>
+    <title>Panel de pruebas - Pizzería</title>
+    <link rel="stylesheet" href="/css/estilos.css">
 </head>
 
 <body>
 
     <header>
-        <h1>LA FORNERÍA</h1>
-
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="/productos">Productos</a>
-        </nav>
-
-        <div>
-            <span id="estadoSesion">No has iniciado sesión</span>
-            <button id="btnLogin">Iniciar sesión</button>
-            <button id="btnLogout" hidden>Cerrar sesión</button>
-        </div>
+        <h1>Panel de pruebas</h1>
+        <p>Administración de usuarios y productos</p>
     </header>
 
     <main>
 
-        <!-- INICIO -->
-        <section id="inicio">
-            <h2>Bienvenidos a La Fornería</h2>
-            <p>Las mejores pizzas, hechas con pasión.</p>
-            <a href="/productos">Ver nuestras pizzas</a>
-        </section>
+        <!-- SESIÓN -->
+        <section>
+            <h2>Sesión</h2>
 
-        <hr>
-
-        <!-- PRODUCTOS -->
-        <section id="productos">
-
-            <h2>Nuestras pizzas</h2>
-
-            <button id="btnActualizar">Actualizar productos</button>
-
-            <p id="mensaje"></p>
-
-            <div id="listaProductos">
-                Cargando productos...
+            <div id="bienvenida">
+                <p id="estadoSesion">No hay ningún usuario conectado.</p>
             </div>
 
+            <button id="btnCerrarSesion" type="button">Cerrar sesión</button>
         </section>
 
-        <hr>
+        <!-- INICIAR SESIÓN -->
+        <section>
+            <h2>Iniciar sesión</h2>
 
-        <!-- PANEL ADMINISTRADOR -->
-        <section id="panelAdmin" hidden>
+            <form id="formLogin">
+                <input
+                    type="email"
+                    id="loginMail"
+                    placeholder="Correo electrónico"
+                    required
+                >
 
-            <h2>Administración de productos</h2>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Contraseña"
+                    required
+                >
 
-            <h3 id="tituloFormulario">Agregar una pizza</h3>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </section>
 
-            <form id="formProducto">
+        <!-- REGISTRARSE -->
+        <section>
+            <h2>Registrarse / Crear usuario</h2>
 
-                <input type="hidden" id="productoId">
+            <form id="formRegistro">
+                <input
+                    type="text"
+                    id="registroNombre"
+                    placeholder="Nombre"
+                    required
+                >
 
-                <div>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" required>
-                </div>
+                <input
+                    type="number"
+                    id="registroEdad"
+                    placeholder="Edad"
+                    required
+                >
 
-                <div>
-                    <label for="precio">Precio:</label>
-                    <input type="number" id="precio" min="1" required>
-                </div>
+                <input
+                    type="email"
+                    id="registroMail"
+                    placeholder="Correo electrónico"
+                    required
+                >
 
-                <div>
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" required></textarea>
-                </div>
+                <input
+                    type="password"
+                    id="registroPassword"
+                    placeholder="Contraseña"
+                    required
+                >
 
-                <div>
-                    <label for="stock">Stock:</label>
-                    <input type="number" id="stock" min="0" required>
-                </div>
+                <button type="submit">Crear usuario</button>
+            </form>
+        </section>
 
-                <button type="submit" id="btnGuardar">
-                    Guardar pizza
-                </button>
+        <!-- PRODUCTOS -->
+        <section>
+            <h2>Productos</h2>
 
-                <button type="button" id="btnCancelar">
-                    Cancelar
-                </button>
+            <button id="btnObtenerProductos" type="button">
+                Ver productos
+            </button>
 
+            <form id="formCrearProducto">
+                <h3>Crear producto</h3>
+
+                <input type="text" id="productoNombre" placeholder="Nombre" required>
+                <input type="number" id="productoPrecio" placeholder="Precio" required>
+                <input type="text" id="productoDescripcion" placeholder="Descripción" required>
+                <input type="number" id="productoStock" placeholder="Stock" required>
+
+                <button type="submit">Crear producto</button>
             </form>
 
+            <form id="formActualizarProducto">
+                <h3>Editar producto por ID</h3>
+
+                <input type="text" id="actualizarProductoId" placeholder="ID del producto" required>
+                <input type="text" id="actualizarProductoNombre" placeholder="Nuevo nombre">
+                <input type="number" id="actualizarProductoPrecio" placeholder="Nuevo precio">
+                <input type="text" id="actualizarProductoDescripcion" placeholder="Nueva descripción">
+                <input type="number" id="actualizarProductoStock" placeholder="Nuevo stock">
+
+                <button type="submit">Editar producto</button>
+            </form>
+
+            <form id="formEliminarProducto">
+                <h3>Eliminar producto por ID</h3>
+
+                <input type="text" id="eliminarProductoId" placeholder="ID del producto" required>
+
+                <button type="submit">Eliminar producto</button>
+            </form>
+
+            <button id="btnGenerarPDF" type="button">
+                Generar PDF de productos
+            </button>
+        </section>
+
+        <!-- USUARIOS -->
+        <section>
+            <h2>Usuarios</h2>
+
+            <button id="btnObtenerUsuarios" type="button">
+                Ver usuarios
+            </button>
+
+            <form id="formBuscarUsuario">
+                <h3>Ver usuario por ID</h3>
+
+                <input type="text" id="buscarUsuarioId" placeholder="ID del usuario" required>
+
+                <button type="submit">Buscar usuario</button>
+            </form>
+
+            <form id="formActualizarUsuario">
+                <h3>Editar usuario por ID</h3>
+
+                <input type="text" id="actualizarUsuarioId" placeholder="ID del usuario" required>
+                <input type="text" id="actualizarNombre" placeholder="Nuevo nombre">
+                <input type="number" id="actualizarEdad" placeholder="Nueva edad">
+                <input type="email" id="actualizarMail" placeholder="Nuevo correo">
+                <input type="password" id="actualizarPassword" placeholder="Nueva contraseña">
+                <input type="text" id="actualizarRol" placeholder="Nuevo rol: admin o usuario">
+
+                <button type="submit">Editar usuario</button>
+            </form>
+
+            <form id="formEliminarUsuario">
+                <h3>Eliminar usuario por ID</h3>
+
+                <input type="text" id="eliminarUsuarioId" placeholder="ID del usuario" required>
+
+                <button type="submit">Eliminar usuario</button>
+            </form>
+        </section>
+        <section>
+            <h2>Resultado de las operaciones</h2>
+
+            <pre id="resultado">Acá aparecerán los mensajes del servidor.</pre>
         </section>
 
     </main>
 
-    <hr>
-
-    <footer>
-        <h3>LA FORNERÍA</h3>
-        <p>Pizza artesanal hecha con pasión.</p>
-        <p>© 2026 - Todos los derechos reservados.</p>
-    </footer>
-
-
-    <!-- FORMULARIO DE LOGIN -->
-    <section id="modalLogin" hidden>
-
-        <h2>Iniciar sesión</h2>
-
-        <form id="formLogin">
-
-            <div>
-                <label for="mail">Correo electrónico:</label>
-                <input type="email" id="mail" required>
-            </div>
-
-            <div>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" required>
-            </div>
-
-            <button type="submit">Ingresar</button>
-
-            <button type="button" id="btnCerrarModal">
-                Cancelar
-            </button>
-
-        </form>
-
-        <p id="mensajeLogin"></p>
-
-    </section>
-
-
-    <script>
-
-        // ========================================
-        // CONFIGURACIÓN
-        // ========================================
-
-        const API = 'http://localhost:8080'
-
-        let token = localStorage.getItem('token')
-        let usuarioActual = null
-        let productos = []
-
-
-        // ========================================
-        // ELEMENTOS DEL HTML
-        // ========================================
-
-        const listaProductos = document.getElementById('listaProductos')
-        const panelAdmin = document.getElementById('panelAdmin')
-        const formProducto = document.getElementById('formProducto')
-        const formLogin = document.getElementById('formLogin')
-        const modalLogin = document.getElementById('modalLogin')
-
-        const mensaje = document.getElementById('mensaje')
-        const mensajeLogin = document.getElementById('mensajeLogin')
-
-        const btnLogin = document.getElementById('btnLogin')
-        const btnLogout = document.getElementById('btnLogout')
-        const btnActualizar = document.getElementById('btnActualizar')
-        const btnCerrarModal = document.getElementById('btnCerrarModal')
-        const btnCancelar = document.getElementById('btnCancelar')
-
-
-        // ========================================
-        // OBTENER USUARIO DESDE EL TOKEN
-        // ========================================
-
-        function obtenerUsuarioDelToken(token) {
-
-            try {
-
-                const payload = token.split('.')[1]
-
-                const payloadDecodificado = atob(
-                    payload.replace(/-/g, '+').replace(/_/g, '/')
-                )
-
-                const texto = decodeURIComponent(
-                    Array.from(payloadDecodificado)
-                        .map(letra =>
-                            '%' + letra.charCodeAt(0)
-                                .toString(16)
-                                .padStart(2, '0')
-                        )
-                        .join('')
-                )
-
-                return JSON.parse(texto)
-
-            } catch (error) {
-
-                return null
-
-            }
-        }
-
-
-        // ========================================
-        // ACTUALIZAR SESIÓN
-        // ========================================
-
-        function actualizarSesion() {
-
-            usuarioActual = token
-                ? obtenerUsuarioDelToken(token)
-                : null
-
-            if (!usuarioActual) {
-
-                token = null
-                localStorage.removeItem('token')
-
-            }
-
-            if (usuarioActual) {
-
-                document.getElementById('estadoSesion').textContent =
-                    `Hola, ${usuarioActual.nombre} (${usuarioActual.rol})`
-
-                btnLogin.hidden = true
-                btnLogout.hidden = false
-
-                if (usuarioActual.rol === 'admin') {
-
-                    panelAdmin.hidden = false
-
-                } else {
-
-                    panelAdmin.hidden = true
-
-                }
-
-            } else {
-
-                document.getElementById('estadoSesion').textContent =
-                    'No has iniciado sesión'
-
-                btnLogin.hidden = false
-                btnLogout.hidden = true
-                panelAdmin.hidden = true
-
-            }
-
-            mostrarProductos()
-
-        }
-
-
-        // ========================================
-        // MOSTRAR MENSAJES
-        // ========================================
-
-        function mostrarMensaje(texto) {
-            mensaje.textContent = texto
-        }
-
-        function mostrarMensajeLogin(texto) {
-            mensajeLogin.textContent = texto
-        }
-
-
-        // ========================================
-        // OBTENER PRODUCTOS DEL BACKEND
-        // ========================================
-
-        async function obtenerProductos() {
-
-            try {
-
-                listaProductos.textContent = 'Cargando productos...'
-
-                const respuesta = await fetch(`${API}/productos`)
-
-                const datos = await respuesta.json()
-
-                if (!respuesta.ok) {
-                    throw new Error('No se pudieron obtener los productos')
-                }
-
-                productos = Array.isArray(datos)
-                    ? datos
-                    : datos.productos || []
-
-                mostrarProductos()
-
-            } catch (error) {
-
-                listaProductos.textContent =
-                    'Error al cargar los productos. Verificá que el servidor esté funcionando.'
-
-                console.error(error)
-
-            }
-        }
-
-
-        // ========================================
-        // MOSTRAR PRODUCTOS EN EL HTML
-        // ========================================
-
-        function mostrarProductos() {
-
-            if (productos.length === 0) {
-
-                listaProductos.textContent = 'No hay productos disponibles.'
-                return
-
-            }
-
-            listaProductos.innerHTML = ''
-
-            productos.forEach(producto => {
-
-                const tarjeta = document.createElement('article')
-
-                const titulo = document.createElement('h3')
-                titulo.textContent = producto.nombre
-
-                const descripcion = document.createElement('p')
-                descripcion.textContent = producto.descripcion
-
-                const precio = document.createElement('p')
-                precio.textContent = `Precio: $${producto.precio}`
-
-                const stock = document.createElement('p')
-                stock.textContent = `Stock: ${producto.stock}`
-
-                tarjeta.append(titulo, descripcion, precio, stock)
-
-                // SOLAMENTE EL ADMIN VE LOS BOTONES
-
-                if (usuarioActual?.rol === 'admin') {
-
-                    const btnEditar = document.createElement('button')
-                    btnEditar.textContent = 'Editar'
-
-                    btnEditar.addEventListener('click', () => {
-                        editarProducto(producto._id)
-                    })
-
-                    const btnEliminar = document.createElement('button')
-                    btnEliminar.textContent = 'Eliminar'
-
-                    btnEliminar.addEventListener('click', () => {
-                        eliminarProducto(producto._id)
-                    })
-
-                    tarjeta.append(btnEditar, btnEliminar)
-
-                }
-
-                listaProductos.appendChild(tarjeta)
-
-            })
-
-        }
-
-
-        // ========================================
-        // INICIAR SESIÓN
-        // ========================================
-
-        formLogin.addEventListener('submit', async (event) => {
-
-            event.preventDefault()
-
-            const mail = document.getElementById('mail').value
-            const password = document.getElementById('password').value
-
-            try {
-
-                const respuesta = await fetch(`${API}/usuarios/login`, {
-
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                    body: JSON.stringify({
-                        mail,
-                        password
-                    })
-
-                })
-
-                const datos = await respuesta.json()
-
-                if (!respuesta.ok) {
-                    throw new Error(datos.error || 'Error al iniciar sesión')
-                }
-
-                token = datos.token
-
-                localStorage.setItem('token', token)
-
-                actualizarSesion()
-
-                modalLogin.hidden = true
-                formLogin.reset()
-
-                mostrarMensaje('Sesión iniciada correctamente.')
-
-            } catch (error) {
-
-                mostrarMensajeLogin(error.message)
-
-            }
-
-        })
-
-
-        // ========================================
-        // CERRAR SESIÓN
-        // ========================================
-
-        btnLogout.addEventListener('click', () => {
-
-            token = null
-            usuarioActual = null
-
-            localStorage.removeItem('token')
-
-            actualizarSesion()
-
-            mostrarMensaje('Sesión cerrada correctamente.')
-
-        })
-
-
-        // ========================================
-        // ABRIR Y CERRAR LOGIN
-        // ========================================
-
-        btnLogin.addEventListener('click', () => {
-
-            modalLogin.hidden = false
-            mensajeLogin.textContent = ''
-
-        })
-
-        btnCerrarModal.addEventListener('click', () => {
-
-            modalLogin.hidden = true
-
-        })
-
-
-        // ========================================
-        // CREAR O ACTUALIZAR PRODUCTO
-        // ========================================
-
-        formProducto.addEventListener('submit', async (event) => {
-
-            event.preventDefault()
-
-            if (usuarioActual?.rol !== 'admin') {
-
-                mostrarMensaje('No tenés permisos para realizar esta operación.')
-                return
-
-            }
-
-            const id = document.getElementById('productoId').value
-
-            const producto = {
-
-                nombre: document.getElementById('nombre').value,
-
-                precio: Number(
-                    document.getElementById('precio').value
-                ),
-
-                descripcion: document.getElementById('descripcion').value,
-
-                stock: Number(
-                    document.getElementById('stock').value
-                )
-
-            }
-
-            const metodo = id ? 'PUT' : 'POST'
-
-            const ruta = id
-                ? `${API}/productos/${id}`
-                : `${API}/productos`
-
-            try {
-
-                const respuesta = await fetch(ruta, {
-
-                    method: metodo,
-
-                    headers: {
-
-                        'Content-Type': 'application/json',
-
-                        'Authorization': `Bearer ${token}`
-
-                    },
-
-                    body: JSON.stringify(producto)
-
-                })
-
-                const datos = await respuesta.json()
-
-                if (!respuesta.ok) {
-                    throw new Error(datos.error || 'No se pudo guardar el producto')
-                }
-
-                mostrarMensaje(
-                    id
-                        ? 'Producto actualizado correctamente.'
-                        : 'Producto creado correctamente.'
-                )
-
-                limpiarFormulario()
-
-                await obtenerProductos()
-
-            } catch (error) {
-
-                mostrarMensaje(error.message)
-
-            }
-
-        })
-
-
-        // ========================================
-        // EDITAR PRODUCTO
-        // ========================================
-
-        function editarProducto(id) {
-
-            const producto = productos.find(
-                p => String(p._id) === String(id)
-            )
-
-            if (!producto) return
-
-            document.getElementById('productoId').value = producto._id
-
-            document.getElementById('nombre').value = producto.nombre
-
-            document.getElementById('precio').value = producto.precio
-
-            document.getElementById('descripcion').value = producto.descripcion
-
-            document.getElementById('stock').value = producto.stock
-
-            document.getElementById('tituloFormulario').textContent =
-                'Editar pizza'
-
-            document.getElementById('btnGuardar').textContent =
-                'Actualizar pizza'
-
-            panelAdmin.scrollIntoView({
-                behavior: 'smooth'
-            })
-
-        }
-
-
-        // ========================================
-        // ELIMINAR PRODUCTO
-        // ========================================
-
-        async function eliminarProducto(id) {
-
-            if (usuarioActual?.rol !== 'admin') return
-
-            const confirmar = confirm(
-                '¿Estás seguro de que querés eliminar esta pizza?'
-            )
-
-            if (!confirmar) return
-
-            try {
-
-                const respuesta = await fetch(`${API}/productos/${id}`, {
-
-                    method: 'DELETE',
-
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-
-                })
-
-                const datos = await respuesta.json()
-
-                if (!respuesta.ok) {
-                    throw new Error(datos.error || 'No se pudo eliminar')
-                }
-
-                mostrarMensaje('Producto eliminado correctamente.')
-
-                await obtenerProductos()
-
-            } catch (error) {
-
-                mostrarMensaje(error.message)
-
-            }
-
-        }
-
-
-        // ========================================
-        // LIMPIAR FORMULARIO
-        // ========================================
-
-        function limpiarFormulario() {
-
-            formProducto.reset()
-
-            document.getElementById('productoId').value = ''
-
-            document.getElementById('tituloFormulario').textContent =
-                'Agregar una pizza'
-
-            document.getElementById('btnGuardar').textContent =
-                'Guardar pizza'
-
-        }
-
-
-        btnCancelar.addEventListener('click', limpiarFormulario)
-
-
-        // ========================================
-        // ACTUALIZAR PRODUCTOS
-        // ========================================
-
-        btnActualizar.addEventListener('click', obtenerProductos)
-
-
-        // ========================================
-        // INICIALIZAR APLICACIÓN
-        // ========================================
-
-        actualizarSesion()
-
-        obtenerProductos()
-
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/main.js"></script>
 
 </body>
-
 </html>

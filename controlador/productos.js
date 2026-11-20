@@ -39,6 +39,11 @@ class Controlador {
             const { id } = req.params
             const producto = req.body
             const productoActualizado = await this.#servicio.actualizarProducto(id,producto)
+            if (productoActualizado === null) {
+            return res.status(404).json({
+                error: 'El producto no existe.'
+            })
+        }
             res.json(productoActualizado)
         }
         catch(error) {
@@ -46,16 +51,27 @@ class Controlador {
         }
     }
 
-    borrarProducto = async (req,res) => {
-        try {
-            const { id } = req.params
-            const productoEliminado = await this.#servicio.borrarProducto(id)
-            res.json(productoEliminado)
+    borrarProducto = async (req, res) => {
+    try {
+        const { id } = req.params
+        const productoEliminado = await this.#servicio.borrarProducto(id)
+
+        if (!productoEliminado) {
+            return res.status(404).json({
+                error: 'El producto no existe.'
+            })
         }
-        catch(error) {
-            res.status(500).json({ url: req.url, method: req.method, error: error.message })
-        }
+
+        res.json(productoEliminado)
+
+    } catch (error) {
+        res.status(500).json({
+            url: req.url,
+            method: req.method,
+            error: error.message
+        })
     }
+}
 
 generarPDF = async (req, res) => {
     try {

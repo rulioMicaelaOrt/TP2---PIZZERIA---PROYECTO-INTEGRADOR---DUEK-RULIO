@@ -1,13 +1,98 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    background-color: #8b2929;
+    color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px #00000015;
+}
+
 h2 {
-    color: blue;
-    margin-bottom: 30px;
+    color: #8b2929;
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #555;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 input {
-    display: block;
-    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
 }
 
 button {
-    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8b2929;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #651c1c;
+}
+
+#btnCerrarSesion {
+    background-color: #555;
+}
+
+#btnCerrarSesion:hover {
+    background-color: #333;
+}
+
+#estadoSesion {
+    font-weight: bold;
+}
+
+#resultado {
+    background-color: #222;
+    color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    min-height: 80px;
 }
