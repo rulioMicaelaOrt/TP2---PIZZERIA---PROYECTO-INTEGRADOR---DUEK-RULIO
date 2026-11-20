@@ -1,22 +1,185 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta de Producto</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Panel de pruebas - Pizzería</title>
+    <link rel="stylesheet" href="/css/estilos.css">
 </head>
+
 <body>
-    <h2>Alta de Producto</h2>
 
-    <form action="/api/productos" method="post">
-        Nombre <input type="text" name="nombre">
-        Precio <input type="number" name="precio">
-        Stock <input type="number" name="stock">
-        
-        <button>Enviar</button>
-    </form>
+    <header>
+        <h1>Panel de pruebas</h1>
+        <p>Administración de usuarios y productos</p>
+    </header>
 
-    <script src="js/main.js"></script>
+    <main>
+
+        <!-- SESIÓN -->
+        <section>
+            <h2>Sesión</h2>
+
+            <div id="bienvenida">
+                <p id="estadoSesion">No hay ningún usuario conectado.</p>
+            </div>
+
+            <button id="btnCerrarSesion" type="button">Cerrar sesión</button>
+        </section>
+
+        <!-- INICIAR SESIÓN -->
+        <section>
+            <h2>Iniciar sesión</h2>
+
+            <form id="formLogin">
+                <input
+                    type="email"
+                    id="loginMail"
+                    placeholder="Correo electrónico"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Contraseña"
+                    required
+                >
+
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </section>
+
+        <!-- REGISTRARSE -->
+        <section>
+            <h2>Registrarse / Crear usuario</h2>
+
+            <form id="formRegistro">
+                <input
+                    type="text"
+                    id="registroNombre"
+                    placeholder="Nombre"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="registroEdad"
+                    placeholder="Edad"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="registroMail"
+                    placeholder="Correo electrónico"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="registroPassword"
+                    placeholder="Contraseña"
+                    required
+                >
+
+                <button type="submit">Crear usuario</button>
+            </form>
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section>
+            <h2>Productos</h2>
+
+            <button id="btnObtenerProductos" type="button">
+                Ver productos
+            </button>
+
+            <form id="formCrearProducto">
+                <h3>Crear producto</h3>
+
+                <input type="text" id="productoNombre" placeholder="Nombre" required>
+                <input type="number" id="productoPrecio" placeholder="Precio" required>
+                <input type="text" id="productoDescripcion" placeholder="Descripción" required>
+                <input type="number" id="productoStock" placeholder="Stock" required>
+
+                <button type="submit">Crear producto</button>
+            </form>
+
+            <form id="formActualizarProducto">
+                <h3>Editar producto por ID</h3>
+
+                <input type="text" id="actualizarProductoId" placeholder="ID del producto" required>
+                <input type="text" id="actualizarProductoNombre" placeholder="Nuevo nombre">
+                <input type="number" id="actualizarProductoPrecio" placeholder="Nuevo precio">
+                <input type="text" id="actualizarProductoDescripcion" placeholder="Nueva descripción">
+                <input type="number" id="actualizarProductoStock" placeholder="Nuevo stock">
+
+                <button type="submit">Editar producto</button>
+            </form>
+
+            <form id="formEliminarProducto">
+                <h3>Eliminar producto por ID</h3>
+
+                <input type="text" id="eliminarProductoId" placeholder="ID del producto" required>
+
+                <button type="submit">Eliminar producto</button>
+            </form>
+
+            <button id="btnGenerarPDF" type="button">
+                Generar PDF de productos
+            </button>
+        </section>
+
+        <!-- USUARIOS -->
+        <section>
+            <h2>Usuarios</h2>
+
+            <button id="btnObtenerUsuarios" type="button">
+                Ver usuarios
+            </button>
+
+            <form id="formBuscarUsuario">
+                <h3>Ver usuario por ID</h3>
+
+                <input type="text" id="buscarUsuarioId" placeholder="ID del usuario" required>
+
+                <button type="submit">Buscar usuario</button>
+            </form>
+
+            <form id="formActualizarUsuario">
+                <h3>Editar usuario por ID</h3>
+
+                <input type="text" id="actualizarUsuarioId" placeholder="ID del usuario" required>
+                <input type="text" id="actualizarNombre" placeholder="Nuevo nombre">
+                <input type="number" id="actualizarEdad" placeholder="Nueva edad">
+                <input type="email" id="actualizarMail" placeholder="Nuevo correo">
+                <input type="password" id="actualizarPassword" placeholder="Nueva contraseña">
+                <input type="text" id="actualizarRol" placeholder="Nuevo rol: admin o usuario">
+
+                <button type="submit">Editar usuario</button>
+            </form>
+
+            <form id="formEliminarUsuario">
+                <h3>Eliminar usuario por ID</h3>
+
+                <input type="text" id="eliminarUsuarioId" placeholder="ID del usuario" required>
+
+                <button type="submit">Eliminar usuario</button>
+            </form>
+        </section>
+        <section>
+            <h2>Resultado de las operaciones</h2>
+
+            <pre id="resultado">Acá aparecerán los mensajes del servidor.</pre>
+        </section>
+
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/main.js"></script>
+
 </body>
 </html>
