@@ -140,7 +140,6 @@ generarPDF = async () => {
 
     doc.moveDown()
 
-    // TOTALES DEL INVENTARIO
 doc.moveDown(2)
 doc.moveTo(50, doc.y)
     .lineTo(545, doc.y)
