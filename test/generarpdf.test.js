@@ -10,6 +10,9 @@ describe('*** TEST DEL SERVICIO GENERAR PDF ***', () => {
 
         expect(doc).to.include.keys('page', 'version')
         expect(doc.version).to.eql(1.3)
+        expect(doc.page).to.be.an('object')
+        expect(doc.page.width).to.be.greaterThan(0)
+        expect(doc.page.height).to.be.greaterThan(0)
 
         doc.end()
     })
